@@ -1,0 +1,9 @@
+@mixin clearfix{
+  //to clear the float:left
+  //float:left causes the row to lose the margin
+  &::after{
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
