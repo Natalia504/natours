@@ -4,3 +4,16 @@
   //.header is 95vh, .polygon is 75vh, spare triangle is 20vh. So move section-about 20vh up(negative value):
   margin-top: -20vh;
 }
+
+.section-features{
+  padding: 20rem 0;
+  background-image: linear-gradient( to right, rgba($color-primary-light, 0.808), rgba($color-primary-dark, 0.801)), url(../img/nat-4.jpg);
+  background-size: cover;
+  transform: skewY(-7deg); // the whole section skews to the right
+  margin-top: -10rem; //move the whole section up, cuz it showing white space
+
+  & > *{ //make boxed to skew in other direction
+    transform: skewY(7deg);
+  }
+  // ^^all FIRST direct children of this section
+}
