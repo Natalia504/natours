@@ -24,6 +24,21 @@
     background-color: #fff;
     color: $color-grey-dark;
     padding: 1.5rem 2rem;
+
+    &::after{
+      background-color: #fff;
+    }
+  }
+
+  &--green{
+    background-color: $color-primary;
+    color: $color-white;
+    padding: 1.5rem 2rem;
+    text-transform: uppercase;
+
+    &::after{
+      background-color: $color-primary;
+    }
   }
 
   /* ::after is to create a btn and hide it behind the original btn. */
@@ -38,10 +53,6 @@
     left: 0;
     z-index: -1;
     transition: all .4s;
-  }
-
-  &--white::after{
-    background-color: #fff;
   }
 
   /* when hover on btn, bring btn::after */
