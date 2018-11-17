@@ -14,6 +14,7 @@
     border-bottom: 3px solid transparent;
     width: 90%;
     display: block;
+    transition: all .3s;
 
     &:focus{
       outline: none;
@@ -46,5 +47,56 @@
     opacity: 0;
     visibility: hidden;
     transform: translateY(-4rem);
+  }
+
+  //RADIO BUTNS HERE
+  &__radio-group{
+    width: 49%;
+    display: inline-block;
+  }
+
+  &__radio-input{
+    display: none;
+  }
+
+  &__radio-label{
+    font-size: $default-font-size;
+    cursor: pointer;
+    position: relative;
+    padding-left: 4rem;
+
+  }
+
+//this is a custom radio button
+  &__radio-button{
+    height: 3rem; //must have h and w cux it's a circle
+    width: 3rem;
+    border: 5px solid $color-primary;
+    border-radius: 50%;
+    display: inline-block; //to be inline with the text
+    position: absolute;
+    left: 0;
+    top: -.6rem;
+
+//this is the inner circle
+    &::after{
+      height: 1.3rem;
+      width: 1.3rem;
+      content: ""; //b/c it's an ::after, it must have content, and display
+      display: block;
+      border-radius: 50%;
+      position: absolute; //to be able to position it in the center
+      top: 50%;
+      left: 50%;
+      background-color: $color-primary;
+      transform: translate(-50%, -50%);
+      opacity: 0; //make the radio btn clear
+      transition: opacity .2s;
+    }
+  }
+
+//once the radio-input gets checked, select the sibling which is radio-label, and target that sibling's child, which is radio-button:
+  &__radio-input:checked ~ &__radio-label &__radio-button::after{
+    opacity: 1;
   }
 }
