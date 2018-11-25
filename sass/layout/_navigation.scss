@@ -15,6 +15,8 @@
     border-radius: 50%;
     z-index: 2000;
     box-shadow: 0 1rem 4rem rgba($color-black, .1);
+    text-align: center;
+    cursor: pointer;
   }
 
   &__background{
@@ -77,6 +79,8 @@
     }
   }
 
+
+//FUNCTIONALITY OF THE BUTTON
 //Animate the background when clicking on the Menu btn!
   //when Menu is clicked, make the background to appear
   &__checkbox:checked ~ &__background{
@@ -88,4 +92,57 @@
     opacity: 1;
     width: 100%;
   }
+
+  //ICON on a Button: one line in HTML, another two cteated with ::before and ::after.
+  &__icon{
+    position:relative;
+    margin-top: 3.5rem;
+
+    &,
+    &::before,
+    &::after{
+      width: 3rem;
+      height: 2px;
+      background-color: $color-grey-dark-3;
+      display: inline-block;
+    }
+    //in order for the ::before and ::after to work, must have content.
+    &::before,
+    &::after{
+      content: "";
+      position:absolute;
+      left: 0;
+      transition: all .2s;
+    }
+    &::before{top: -.8rem;}
+    &::after{top: .8rem;
+    }
+  }
+
+//make the outer lines expand on hover. Used transition.
+  &__button:hover &__icon::before{
+    top: -1rem;
+  }
+  &__button:hover &__icon::after{
+    top: 1rem;
+  }
+
+  //make the outer lines form a cross, by rotating them , and hiding the middle line.
+
+  //when the checkbox is checked, select its sibling: __button and button's child: __icon, and hide it.
+  &__checkbox:checked + &__button &__icon{
+    //can't use display:none, cuz :before and :after depend on the size of the middle line.
+    background-color: transparent;
+  }
+
+  &__checkbox:checked + &__button &__icon::before{
+    top: 0;
+    transform: rotate(135deg);
+  }
+
+  &__checkbox:checked + &__button &__icon::after{
+    top: 0;
+    transform: rotate(-135deg);
+  }
+
 }
