@@ -6,7 +6,9 @@
   top: 0;
   left: 0;
   z-index: 3000;
-
+  opacity: 0; //must add visibility: hidden;
+  visibility: hidden;
+  transition: all .3s;
 
 //use table and table-cell to make them of the same height.
   &__content{
@@ -17,6 +19,9 @@
     border-radius: 3px;
     display: table;
     overflow: hidden; //problem: img overlaps the radius. This will fix it!
+    opacity: 0; //this and next line is to make it zoom-in
+    transform: translate(-50%, -50%) scale(.25); //transform prop comes from absCenter, but you can only have 1, so add merge two transform together in a later one, so it overwrites it.
+    transition: all .4s .2s; //to animate the zoom-in animation!
   }
 
   &__left{
@@ -65,4 +70,36 @@
     -ms-hyphens: auto;
     -webkit-hyphens: auto;
   }
+
+  //add id="popup" to the popup element, then, on each button the href="#popup"
+  //next two are OPEN state.
+    &:target{
+      opacity: 1;
+      visibility: visible;
+    }
+
+    &:target &__content{
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    &__close{
+      &:link,
+      &:visited{
+        color: $color-grey-dark;
+        position: absolute;
+        top: 2.5rem;
+        right: 2.5rem;
+        font-size: 3rem;
+        text-decoration: none;
+        display: inline-block;
+        transition: all .2s;
+        line-height: 1;
+      }
+
+      &:hover{
+        color: $color-primary;
+      }
+    }
+
 }
