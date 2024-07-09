@@ -16,9 +16,8 @@
     "url": "https://github.com/Natalia504/natours/issues"
   },
   "homepage": "https://github.com/Natalia504/natours#readme",
-  "devDependencies": {},
   "dependencies": {
-    "jquery": "^3.3.1",
-    "node-sass": "4.5.3"
+    "jquery": "^3.7.1",
+    "node-sass": "^9.0.0"
   }
 }
