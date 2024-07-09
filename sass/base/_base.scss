@@ -7,9 +7,20 @@
   box-sizing: inherit;
 }
 
-html{
-  // this is what 1rem is: 62.5% === 10px
+html {
+  // this is what 1rem is: 62.5% === 10px => 10px/16px=62.5%
+  // all rem values throughout the аpp should be *10px
   font-size: 62.5%;
+
+  @include respond(tab-land) {
+    font-size: 56.25%; // => we want here 1rem = 9px so 9px/16px=50%. On Tab-land, all rem values would be multiplied by 9px , not 10px
+  }
+  @include respond(tab-port) {
+    font-size: 50%; //we want here 1rem = 8px so 8px/16px=50%. On Tab-land, all rem values would be multiplied by 8px , not 10px
+  }
+  @include respond(big-desktop) {
+    font-size: 75%; // 1rem=12, 12/16
+  }
 }
 
 body {
