@@ -1,10 +1,9 @@
-.navigation{
-
-  &__checkbox{
+.navigation {
+  &__checkbox {
     display: none;
   }
 
-  &__button{
+  &__button {
     //the button is on top of the backgound, that's why it's larger insize, so it covers the green BG.
     background-color: $color-white;
     height: 7rem;
@@ -14,24 +13,45 @@
     right: 6rem;
     border-radius: 50%;
     z-index: 2000;
-    box-shadow: 0 1rem 4rem rgba($color-black, .1);
+    box-shadow: 0 1rem 4rem rgba($color-black, 0.1);
     text-align: center;
     cursor: pointer;
+
+    @include respond(tab-port) {
+      top: 4rem;
+      right: 4rem;
+    }
+    @include respond(phone) {
+      top: 3rem;
+      right: 3rem;
+    }
   }
 
-  &__background{
+  &__background {
     height: 6rem;
     width: 6rem;
     border-radius: 50%;
     position: fixed;
     top: 6.5rem;
     right: 6.5rem;
-    background-image: radial-gradient($color-primary-light, $color-primary-dark); //radial-gradient starts in the middle and goes in other directions.
+    background-image: radial-gradient(
+      $color-primary-light,
+      $color-primary-dark
+    ); //radial-gradient starts in the middle and goes in other directions.
     z-index: 1000;
-    transition: transform .8s cubic-bezier(0.86, 0, 0.07, 1);
+    transition: transform 0.8s cubic-bezier(0.86, 0, 0.07, 1);
+
+    @include respond(tab-port) {
+      top: 4.5rem;
+      right: 4.5rem;
+    }
+    @include respond(phone) {
+      top: 3.5rem;
+      right: 3.5rem;
+    }
   }
 
-  &__nav{
+  &__nav {
     height: 100vh;
     position: fixed;
     top: 0;
@@ -39,10 +59,10 @@
     z-index: 1500;
     opacity: 0; //remove the text in the Menu
     width: 0; //this is done so there's no pointer shown.
-    transition: all .8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 
-  &__list{
+  &__list {
     //center the __list
     position: absolute;
     top: 50%;
@@ -52,13 +72,13 @@
     text-align: center;
   }
 
-  &__item{
+  &__item {
     margin: 1rem;
   }
 
-  &__link{
+  &__link {
     &:link,
-    &:visited{
+    &:visited {
       display: inline-block; //without it padding and animation don't work
       font-size: 3rem;
       font-weight: 300;
@@ -66,41 +86,45 @@
       color: $color-white;
       text-decoration: none;
       text-transform: uppercase;
-      background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $color-white 50% );
+      background-image: linear-gradient(
+        120deg,
+        transparent 0%,
+        transparent 50%,
+        $color-white 50%
+      );
       background-size: 230%;
-      transition: all .4s;
+      transition: all 0.4s;
     }
 
     &:hover,
-    &:active{
+    &:active {
       background-position: 100%;
       color: $color-primary;
       transform: translateX(1rem);
     }
   }
 
-
-//FUNCTIONALITY OF THE BUTTON
-//Animate the background when clicking on the Menu btn!
+  //FUNCTIONALITY OF THE BUTTON
+  //Animate the background when clicking on the Menu btn!
   //when Menu is clicked, make the background to appear
-  &__checkbox:checked ~ &__background{
+  &__checkbox:checked ~ &__background {
     transform: scale(80);
   }
 
-//When the Menu is clicked, make nav list appear
-  &__checkbox:checked ~ &__nav{
+  //When the Menu is clicked, make nav list appear
+  &__checkbox:checked ~ &__nav {
     opacity: 1;
     width: 100%;
   }
 
   //ICON on a Button: one line in HTML, another two cteated with ::before and ::after.
-  &__icon{
-    position:relative;
+  &__icon {
+    position: relative;
     margin-top: 3.5rem;
 
     &,
     &::before,
-    &::after{
+    &::after {
       width: 3rem;
       height: 2px;
       background-color: $color-grey-dark-3;
@@ -108,41 +132,43 @@
     }
     //in order for the ::before and ::after to work, must have content.
     &::before,
-    &::after{
+    &::after {
       content: "";
-      position:absolute;
+      position: absolute;
       left: 0;
-      transition: all .2s;
+      transition: all 0.2s;
     }
-    &::before{top: -.8rem;}
-    &::after{top: .8rem;
+    &::before {
+      top: -0.8rem;
+    }
+    &::after {
+      top: 0.8rem;
     }
   }
 
-//make the outer lines expand on hover. Used transition.
-  &__button:hover &__icon::before{
+  //make the outer lines expand on hover. Used transition.
+  &__button:hover &__icon::before {
     top: -1rem;
   }
-  &__button:hover &__icon::after{
+  &__button:hover &__icon::after {
     top: 1rem;
   }
 
   //make the outer lines form a cross, by rotating them , and hiding the middle line.
 
   //when the checkbox is checked, select its sibling: __button and button's child: __icon, and hide it.
-  &__checkbox:checked + &__button &__icon{
+  &__checkbox:checked + &__button &__icon {
     //can't use display:none, cuz :before and :after depend on the size of the middle line.
     background-color: transparent;
   }
 
-  &__checkbox:checked + &__button &__icon::before{
+  &__checkbox:checked + &__button &__icon::before {
     top: 0;
     transform: rotate(135deg);
   }
 
-  &__checkbox:checked + &__button &__icon::after{
+  &__checkbox:checked + &__button &__icon::after {
     top: 0;
     transform: rotate(-135deg);
   }
-
 }
