@@ -10,10 +10,6 @@
   visibility: hidden;
   transition: all 0.3s;
 
-  // @include respond(phone) {
-  //   width: 100%;
-  // }
-
   //use table and table-cell to make them of the same height.
   &__content {
     @include absCenter;
@@ -27,10 +23,6 @@
     transform: translate(-50%, -50%) scale(0.25); //transform prop comes from absCenter, but you can only have 1, so add merge two transform together in a later one, so it overwrites it.
     transition: all 0.4s 0.2s; //to animate the zoom-in animation!
 
-    // @include respond(phone) {
-    //   // display: block;
-    //   width: 100%;
-    // }
     @include respond(tab-port) {
       background-color: lightblue;
       width: 90%;
