@@ -1,74 +1,82 @@
-.form{
-  &__group:not(:last-child){
+.form {
+  &__group:not(:last-child) {
     margin-bottom: 2rem;
   }
 
-  &__input{
+  &__input {
     font-size: 1.5rem;
     font-family: inherit;
-    color:inherit;
+    color: inherit;
     padding: 1.5rem 2rem;
     border-radius: 2px;
-    background-color: rgbs($color-white, .5);
+    background-color: rgbs($color-white, 0.5);
     border: none;
     border-bottom: 3px solid transparent;
     width: 90%;
     display: block;
-    transition: all .3s;
+    transition: all 0.3s;
 
-    &:focus{
+    @include respond(tab-port) {
+      width: 100%;
+    }
+
+    &:focus {
       outline: none;
-      box-shadow: 0 1rem 2rem rgba($color-black, .1);
+      box-shadow: 0 1rem 2rem rgba($color-black, 0.1);
       border-bottom: 3px solid $color-primary;
 
-// input validation
-      &:invalid{
+      // input validation
+      &:invalid {
         border-bottom: 3px solid $color-secondary-dark;
       }
     }
 
-// To change the color of the text int he input
-    &::-webkit-input-placeholder{
+    // To change the color of the text int he input
+    &::-webkit-input-placeholder {
       color: $color-grey-dark-2;
     }
   }
 
-  &__label{
+  &__label {
     font-size: 1.2rem;
     font-weight: 700;
     margin-left: 2rem;
-    margin-top: .7rem;
+    margin-top: 0.7rem;
     display: block;
-    transition: all .3s;
+    transition: all 0.3s;
   }
 
-// Placeholder to move down
-  &__input:placeholder-shown + &__label{
+  // Placeholder to move down
+  &__input:placeholder-shown + &__label {
     opacity: 0;
     visibility: hidden;
     transform: translateY(-4rem);
   }
 
   //RADIO BUTNS HERE
-  &__radio-group{
+  &__radio-group {
     width: 49%;
     display: inline-block;
+
+    @include respond(tab-port) {
+      width: 100%;
+      margin-bottom: 2rem;
+    }
   }
 
-  &__radio-input{
+  &__radio-input {
     display: none;
   }
 
-  &__radio-label{
+  &__radio-label {
     font-size: $default-font-size;
     cursor: pointer;
     position: relative;
     padding-left: 4rem;
-
   }
 
-//this is a custom radio button
-  &__radio-button{
+  //this is a custom radio button
+  &__radio-button {
     height: 3rem; //must have h and w cux it's a circle
     width: 3rem;
     border: 5px solid $color-primary;
@@ -76,10 +84,10 @@
     display: inline-block; //to be inline with the text
     position: absolute;
     left: 0;
-    top: -.6rem;
+    top: -0.6rem;
 
-//this is the inner circle
-    &::after{
+    //this is the inner circle
+    &::after {
       height: 1.3rem;
       width: 1.3rem;
       content: ""; //b/c it's an ::after, it must have content, and display
@@ -91,12 +99,12 @@
       background-color: $color-primary;
       transform: translate(-50%, -50%);
       opacity: 0; //make the radio btn clear
-      transition: opacity .2s;
+      transition: opacity 0.2s;
     }
   }
 
-//once the radio-input gets checked, select the sibling which is radio-label, and target that sibling's child, which is radio-button:
-  &__radio-input:checked ~ &__radio-label &__radio-button::after{
+  //once the radio-input gets checked, select the sibling which is radio-label, and target that sibling's child, which is radio-button:
+  &__radio-input:checked ~ &__radio-label &__radio-button::after {
     opacity: 1;
   }
 }
